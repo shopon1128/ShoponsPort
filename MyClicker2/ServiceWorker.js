@@ -1,9 +1,9 @@
 const cacheName = "DefaultCompany-MyClicker-1.0";
 const contentToCache = [
-    "Build/MyClicker_WebGL5.loader.js",
-    "Build/MyClicker_WebGL5.framework.js",
-    "Build/MyClicker_WebGL5.data",
-    "Build/MyClicker_WebGL5.wasm",
+    "Build/MyClicker_WebGL6.loader.js",
+    "Build/MyClicker_WebGL6.framework.js",
+    "Build/MyClicker_WebGL6.data",
+    "Build/MyClicker_WebGL6.wasm",
     "TemplateData/style.css"
 
 ];
