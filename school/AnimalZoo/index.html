@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnimalZoo — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    /* ---------- ゲームタイトルブロック ---------- */
+    .game-header {
+      border:        2.5px solid var(--border);
+      padding:       36px 40px;
+      margin-bottom: 32px;
+      background:    var(--card-bg);
+      position:      relative;
+      animation:     fadeUp 0.6s 0.1s ease both;
+    }
+
+    .game-header::before {
+      content:  '';
+      position: absolute;
+      inset:    5px -5px -5px 5px;
+      border:   2.5px solid var(--accent);
+      z-index:  -1;
+    }
+
+    .game-title {
+      font-family:    'Syne', sans-serif;
+      font-weight:    800;
+      font-size:      clamp(1.8rem, 5vw, 2.8rem);
+      letter-spacing: -0.02em;
+      line-height:    1.1;
+      margin-bottom:  10px;
+    }
+
+    .game-title span { color: #5b9bff; }
+
+    .game-meta {
+      display:    flex;
+      gap:        10px;
+      flex-wrap:  wrap;
+      margin-top: 14px;
+    }
+
+    /* ---------- 動画プレイヤーブロック ---------- */
+    .section-block {
+      border:        2.5px solid var(--border);
+      padding:       32px;
+      margin-bottom: 32px;
+      background:    var(--card-bg);
+      position:      relative;
+      animation:     fadeUp 0.6s ease both;
+    }
+
+    .section-block::before {
+      content:  '';
+      position: absolute;
+      inset:    5px -5px -5px 5px;
+      border:   2.5px solid var(--accent);
+      z-index:  -1;
+    }
+
+    .section-block:nth-of-type(2) { animation-delay: 0.2s; }
+    .section-block:nth-of-type(3) { animation-delay: 0.35s; }
+
+    .video-wrapper {
+      margin-top:      16px;
+      border:          2.5px solid var(--border);
+      background:      var(--border);
+      aspect-ratio:    16 / 9;
+      overflow:        hidden;
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+    }
+
+    .video-wrapper video {
+      width:      100%;
+      height:     100%;
+      object-fit: contain;
+      background: #000;
+      display:    block;
+    }
+
+    /* ---------- ダウンロードグリッド ---------- */
+    .dl-grid {
+      display:               grid;
+      grid-template-columns: 1fr 1fr;
+      gap:                   20px;
+      margin-top:            16px;
+    }
+
+    .dl-card {
+      border:          2.5px solid var(--border);
+      padding:         28px 24px 24px;
+      background:      var(--accent-light);
+      display:         flex;
+      flex-direction:  column;
+      gap:             14px;
+      text-decoration: none;
+      color:           inherit;
+      position:        relative;
+      transition:      transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .dl-card:hover {
+      transform:  translate(-3px, -3px);
+      box-shadow: 5px 5px 0 var(--accent);
+    }
+
+    .dl-os {
+      font-family:    'Syne', sans-serif;
+      font-weight:    700;
+      font-size:      1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .dl-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .dl-label {
+      font-family:    'Syne', sans-serif;
+      font-size:      0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background:     var(--accent);
+      color:          #fff;
+      padding:        4px 12px;
+      align-self:     flex-start;
+      margin-top:     auto;
+    }
+
+    /* ---------- レスポンシブ ---------- */
+    @media (max-width: 600px) {
+      .dl-grid        { grid-template-columns: 1fr; }
+      .game-header    { padding: 24px; }
+      .section-block  { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="back-link" href="../index.html">← Back</a>
+    <h1>Animal<span style="color:#5b9bff;">Zoo</span></h1>
+  </header>
+
+  <!-- ゲーム概要 -->
+  <div class="game-header">
+    <p class="section-label">Game</p>
+    <p class="game-title">Animal<span>Zoo</span></p>
+    <div class="game-meta">
+      <span class="tag">Windows</span>
+      <span class="tag">macOS</span>
+    </div>
+  </div>
+
+  <!-- プレイ動画 -->
+  <div class="section-block">
+    <p class="section-label">Gameplay Video</p>
+    <div class="video-wrapper">
+      <video controls preload="metadata">
+        <source src="movie.mov" type="video/quicktime">
+        <source src="movie.mov" type="video/mp4">
+        お使いのブラウザは動画の再生に対応していません。
+      </video>
+    </div>
+  </div>
+
+  <!-- ダウンロード -->
+  <div class="section-block">
+    <p class="section-label">Download</p>
+    <div class="dl-grid">
+
+      <a class="dl-card" href="WIN/AnimalZoo.zip" download>
+        <span class="dl-icon">🪟</span>
+        <span class="dl-os">Windows</span>
+        <span class="dl-label">Download</span>
+      </a>
+
+      <a class="dl-card" href="MAC/AnimalZoo.zip" download>
+        <span class="dl-icon">🍎</span>
+        <span class="dl-os">macOS</span>
+        <span class="dl-label">Download</span>
+      </a>
+
+    </div>
+  </div>
+
+  <footer><p>© 2026 Shopon</p></footer>
+
+</body>
+</html>
