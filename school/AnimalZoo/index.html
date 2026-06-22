@@ -6,18 +6,23 @@
   <title>AnimalZoo — Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../works.css">
   <style>
-    /* ---------- ゲームタイトルブロック ---------- */
-    .game-header {
+    /* ---------- 動画カード ---------- */
+    .video-card {
       border:        2.5px solid var(--border);
-      padding:       36px 40px;
-      margin-bottom: 32px;
+      padding:       28px;
       background:    var(--card-bg);
+      display:       grid;
+      grid-template-columns: 240px 1fr;
+      grid-template-rows:    auto 1fr;
+      gap:           12px 24px;
       position:      relative;
-      animation:     fadeUp 0.6s 0.1s ease both;
+      animation:     fadeUp 0.5s 0.05s ease both;
+      margin-bottom: 0;
     }
 
-    .game-header::before {
+    .video-card::before {
       content:  '';
       position: absolute;
       inset:    5px -5px -5px 5px;
@@ -25,170 +30,106 @@
       z-index:  -1;
     }
 
-    .game-title {
-      font-family:    'Syne', sans-serif;
-      font-weight:    800;
-      font-size:      clamp(1.8rem, 5vw, 2.8rem);
-      letter-spacing: -0.02em;
-      line-height:    1.1;
-      margin-bottom:  10px;
-    }
-
-    .game-title span { color: #5b9bff; }
-
-    .game-meta {
-      display:    flex;
-      gap:        10px;
-      flex-wrap:  wrap;
-      margin-top: 14px;
-    }
-
-    /* ---------- 動画プレイヤーブロック ---------- */
-    .section-block {
-      border:        2.5px solid var(--border);
-      padding:       32px;
-      margin-bottom: 32px;
-      background:    var(--card-bg);
-      position:      relative;
-      animation:     fadeUp 0.6s ease both;
-    }
-
-    .section-block::before {
-      content:  '';
-      position: absolute;
-      inset:    5px -5px -5px 5px;
-      border:   2.5px solid var(--accent);
-      z-index:  -1;
-    }
-
-    .section-block:nth-of-type(2) { animation-delay: 0.2s; }
-    .section-block:nth-of-type(3) { animation-delay: 0.35s; }
-
-    .video-wrapper {
-      margin-top:      16px;
-      border:          2.5px solid var(--border);
-      background:      var(--border);
-      aspect-ratio:    16 / 9;
-      overflow:        hidden;
-      display:         flex;
-      align-items:     center;
+    /* サムネイル列にビデオを収める */
+    .video-thumb {
+      grid-row:     1 / 3;
+      border:       2px solid var(--border);
+      overflow:     hidden;
+      aspect-ratio: 4 / 3;
+      background:   #000;
+      display:      flex;
+      align-items:  center;
       justify-content: center;
     }
 
-    .video-wrapper video {
+    .video-thumb video {
       width:      100%;
       height:     100%;
       object-fit: contain;
-      background: #000;
       display:    block;
     }
 
-    /* ---------- ダウンロードグリッド ---------- */
-    .dl-grid {
-      display:               grid;
-      grid-template-columns: 1fr 1fr;
-      gap:                   20px;
-      margin-top:            16px;
+    /* ---------- ダウンロード行 ---------- */
+    .dl-row {
+      display: flex;
+      gap:     10px;
+      flex-wrap: wrap;
     }
 
-    .dl-card {
-      border:          2.5px solid var(--border);
-      padding:         28px 24px 24px;
-      background:      var(--accent-light);
-      display:         flex;
-      flex-direction:  column;
-      gap:             14px;
-      text-decoration: none;
-      color:           inherit;
-      position:        relative;
-      transition:      transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .dl-card:hover {
-      transform:  translate(-3px, -3px);
-      box-shadow: 5px 5px 0 var(--accent);
-    }
-
-    .dl-os {
-      font-family:    'Syne', sans-serif;
-      font-weight:    700;
-      font-size:      1.1rem;
-      letter-spacing: -0.01em;
-    }
-
-    .dl-icon {
-      font-size: 2.2rem;
-      line-height: 1;
-    }
-
-    .dl-label {
+    .dl-btn {
       font-family:    'Syne', sans-serif;
       font-size:      0.65rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       background:     var(--accent);
       color:          #fff;
-      padding:        4px 12px;
-      align-self:     flex-start;
-      margin-top:     auto;
+      padding:        5px 14px;
+      text-decoration: none;
+      border:         2px solid var(--border);
+      transition:     transform 0.15s ease, box-shadow 0.15s ease;
+      display:        inline-block;
+    }
+
+    .dl-btn:hover {
+      transform:  translate(-2px, -2px);
+      box-shadow: 3px 3px 0 var(--border);
     }
 
     /* ---------- レスポンシブ ---------- */
-    @media (max-width: 600px) {
-      .dl-grid        { grid-template-columns: 1fr; }
-      .game-header    { padding: 24px; }
-      .section-block  { padding: 20px; }
+    @media (max-width: 620px) {
+      .video-card {
+        grid-template-columns: 1fr;
+        grid-template-rows:    auto auto auto auto;
+      }
+      .video-thumb {
+        grid-row:     auto;
+        aspect-ratio: 16 / 9;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <a class="back-link" href="../index.html">← Back</a>
-    <h1>Animal<span style="color:#5b9bff;">Zoo</span></h1>
+    <a class="back-link" href="../index.html">← ホームへ戻る</a>
+    <h1>School Works</h1>
   </header>
 
-  <!-- ゲーム概要 -->
-  <div class="game-header">
-    <p class="section-label">Game</p>
-    <p class="game-title">Animal<span>Zoo</span></p>
-    <div class="game-meta">
-      <span class="tag">Windows</span>
-      <span class="tag">macOS</span>
-    </div>
-  </div>
+  <main class="works-list">
 
-  <!-- プレイ動画 -->
-  <div class="section-block">
-    <p class="section-label">Gameplay Video</p>
-    <div class="video-wrapper">
-      <video controls preload="metadata">
-        <source src="movie.mov" type="video/quicktime">
-        <source src="movie.mov" type="video/mp4">
-        お使いのブラウザは動画の再生に対応していません。
-      </video>
-    </div>
-  </div>
+    <article class="video-card">
+      <!-- 左: 動画 -->
+      <div class="video-thumb">
+        <video controls preload="metadata">
+          <source src="movie.mp4" type="video/mp4">
+          お使いのブラウザは動画の再生に対応していません。
+        </video>
+      </div>
 
-  <!-- ダウンロード -->
-  <div class="section-block">
-    <p class="section-label">Download</p>
-    <div class="dl-grid">
+      <!-- 右上: タイトル -->
+      <div class="work-title">
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;border-bottom:2px solid var(--accent);padding-bottom:2px;">お口にポンっとアニマルZOO!</span>
+      </div>
 
-      <a class="dl-card" href="WIN/AnimalZoo.zip" download>
-        <span class="dl-icon">🪟</span>
-        <span class="dl-os">Windows</span>
-        <span class="dl-label">Download</span>
-      </a>
+      <!-- 右下: 説明 -->
+      <div class="work-desc">
+        動物たちに餌をあげるゲーム。<br>
+        Z/X/Cキーで動物を指定できます。動物たちの好みに合った餌をあげよう!<br>
+        ゲームの全体的なロジック部分と、タイトルの演出を担当しました。<br>
+        制作期間1ヶ月
+      </div>
 
-      <a class="dl-card" href="MAC/AnimalZoo.zip" download>
-        <span class="dl-icon">🍎</span>
-        <span class="dl-os">macOS</span>
-        <span class="dl-label">Download</span>
-      </a>
+      <!-- タグ + ダウンロードボタン -->
+      <div class="work-tags">
+        <span class="tag">チーム制作</span>
+        <span class="tag">Unity</span>
+        <span class="tag">C#</span>
+        <a class="dl-btn" href="WIN" download>⬇ Windows</a>
+        <a class="dl-btn" href="MAC" download>⬇ macOS</a>
+      </div>
+    </article>
 
-    </div>
-  </div>
+  </main>
 
   <footer><p>© 2026 Shopon</p></footer>
 
