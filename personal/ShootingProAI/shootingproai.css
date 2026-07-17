@@ -71,7 +71,10 @@ main {
   background:     var(--accent-light);
   border:         1.5px solid var(--border);
   padding:        2px 7px;
-  margin-right:   8px;
+  margin:         0 6px;
+}
+.controls div > .key:first-child {
+  margin-left:    0;
 }
 
 /* ---------- 特徴カード ---------- */
