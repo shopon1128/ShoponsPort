@@ -53,11 +53,13 @@ main {
   display:               grid;
   grid-template-columns: 1fr 1fr;
   gap:                   10px 24px;
-  margin-top:            16px;
+  max-width:             fit-content;
+  margin:                16px auto 0;
   border:                2px solid var(--border);
   background:            var(--card-bg);
   padding:               16px 20px;
   font-size:             0.87rem;
+  text-align:            left;
 }
 
 .controls .key {
