@@ -129,6 +129,70 @@ main {
   margin-right: 6px;
 }
 
+/* ---------- AIプロフィールカード ---------- */
+.ai-grid {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   16px;
+  margin-top:            16px;
+}
+
+.ai-card {
+  border:     2px solid var(--border);
+  background: var(--card-bg);
+  padding:    16px 18px;
+}
+
+/* 現行チャンピオンだけアクセント枠で目立たせる */
+.ai-card--champ {
+  border-color: var(--accent);
+  box-shadow:   4px 4px 0 var(--accent-light);
+}
+
+.ai-card header {
+  display:         flex;
+  align-items:     baseline;
+  justify-content: space-between;
+  flex-wrap:       wrap;
+  gap:             4px 10px;
+  border:          none;
+  background:      none;
+  color:           inherit;/* shared.cssのページヘッダー用スタイル(白文字)を打ち消す */
+  position:        static;
+  padding:         0;
+  margin:          0 0 4px;
+  animation:       none;
+}
+
+.ai-card header::before { content: none; }
+
+.ai-card h3 {
+  font-size:   0.98rem;
+  font-weight: 500;
+}
+
+.ai-tag {
+  font-family:    'Syne', sans-serif;
+  font-size:      0.62rem;
+  letter-spacing: 0.08em;
+  background:     var(--accent-light);
+  border:         1.5px solid var(--border);
+  padding:        1px 8px;
+}
+
+.ai-persona {
+  font-size:     0.8rem;
+  font-weight:   500;
+  color:         var(--accent);
+  margin-bottom: 6px;
+}
+
+.ai-card > p:not(.ai-persona) {
+  font-size:   0.85rem;
+  line-height: 1.85;
+  color:       #2d3748;
+}
+
 /* ---------- 公平性ルール ---------- */
 .fairness-box {
   border:      2px solid var(--border);
@@ -215,6 +279,22 @@ main {
   color:          rgba(255, 255, 255, 0.85);
 }
 
+/* ---------- 戦闘データ配布 ---------- */
+.download { text-align: center; }
+
+.download .data-desc {
+  text-align:  left;
+  margin-top:  12px;
+  font-size:   0.9rem;
+  line-height: 1.95;
+}
+
+.download code {
+  background: var(--accent-light);
+  padding:    1px 7px;
+  font-size:  0.85em;
+}
+
 /* ---------- 技術タグ ---------- */
 .tech-tags {
   display:    flex;
@@ -228,6 +308,7 @@ main {
   main { gap: 36px; }
 
   .feature-grid,
+  .ai-grid,
   .controls { grid-template-columns: 1fr; }
 
   .stat-row { grid-template-columns: 1fr; }

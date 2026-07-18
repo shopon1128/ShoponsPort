@@ -13,7 +13,7 @@
   <header>
     <a class="back-link" href="../index.html">← 作品一覧へ戻る</a>
     <h1>Battle AI</h1>
-    <p class="header-sub">「理不尽じゃないのに強い」敵AIをつくる — ユーティリティAI × Optuna最適化の1vs1シューティング</p>
+    <p class="header-sub">「立ち回りで勝つ」敵AIをつくる — ユーティリティAI × Optuna最適化の1vs1シューティング</p>
   </header>
 
   <main>
@@ -21,11 +21,11 @@
       <a class="play-button" href="MyShootingGame_ProAI_Optimized/">▶ Play in Browser</a>
       <p class="play-note">WebGL版 / インストール不要 / PCキーボード推奨</p>
       <div class="controls">
-        <div><span class="key">WASD</span>移動</div>
-        <div><span class="key">SPACE</span>or<span class="key">SHIFT</span>ダッシュ</div>
-        <div><span class="key">IJKL</span>or<span class="key">↑←↓→</span>上下左右へショット</div>
-        <div><span class="key">E</span>進行方向へショット</div>
-        <div><span class="key">ESC</span>AI作品版の表示に切替(戦術・危険地帯を可視化)</div>
+        <div><span class="key">WASD</span>  移動</div>
+        <div><span class="key">SPACE</span>or<span class="key">SHIFT</span>. ダッシュ</div>
+        <div><span class="key">IJKL</span>or<span class="key">↑←↓→</span>. 上下左右へショット</div>
+        <div><span class="key">E</span>. 進行方向へショット</div>
+        <div><span class="key">ESC</span>. AI作品版の表示に切替(戦術・危険地帯を可視化)</div>
       </div>
     </section>
 
@@ -35,9 +35,9 @@
         ランダム生成される遮蔽物マップで、敵ボスと1vs1で撃ち合うトップダウンシューティングです。
         ただし主役はプレイヤーではなく<strong>敵AI</strong>。
         「機械だからこその理不尽な反応速度で勝つ」のではなく、
-        <strong>立ち回りの賢さだけで人間を追い詰める</strong>ボスを目指した、ゲームというよりAI作品です。
-        タイトル画面でステートマシン型の基本AI・ユーティリティAI(学習前)・Optuna学習済みAIの3種類を切り替えられるので、
-        AIの進化を体感しながら遊べます。
+        <strong>立ち回りの賢さだけで人間を追い詰める</strong>ボスを目指した作品です。
+        タイトル画面で4種類の敵AI(下の「AI Lineup」参照)を切り替えられるので、
+        手作りのAIから最適化されたチャンピオンまで、AIの進化を体感しながら遊べます。
       </p>
     </section>
 
@@ -73,6 +73,66 @@
           <h3>効果を「測る」仕組み</h3>
           <p>命中率・戦術滞在時間・見失い時間などを毎試合記録しCSVに蓄積。フェイントの効果も「使った時と使わない時の隠密時間の差」として定量測定しています。</p>
         </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-label">AI Lineup</h2>
+      <p>
+        タイトル画面で選べる4種類の敵AIの紹介です。今後公開する対戦データ(CSV)の
+        <code>ai_type</code>列は、各カードのラベルに対応します。
+      </p>
+      <div class="ai-grid">
+        <article class="ai-card">
+          <header>
+            <h3>Normal AI</h3>
+            <span class="ai-tag">ai_type: normal</span>
+          </header>
+          <p class="ai-persona">まっすぐ来る脳筋ファイター</p>
+          <p>
+            索敵→追跡→攻撃→離脱の4状態だけで動くステートマシン型。隠密も駆け引きも知らず、
+            見つけたら追いかけて自由角度で撃ちまくります。単純ゆえに手数が多く、
+            行儀よく戦う相手には意外なほど強い一方、遮蔽を使う人間には動きを読まれがちです。
+          </p>
+        </article>
+        <article class="ai-card">
+          <header>
+            <h3>Pro AI</h3>
+            <span class="ai-tag">ai_type: pro</span>
+          </header>
+          <p class="ai-persona">設計者の意図どおりに戦う基準機</p>
+          <p>
+            7つの戦術を使い分けるユーティリティAIに、人間が手で調整した値を載せた「設計図どおり」の個体。
+            フェイントも危険記憶も教科書的な頻度で使います。慎重派で、EPが8割回復するまで
+            じっくり隠れるため試合が長引きがち。最適化の効果を測るときの比較基準です。
+          </p>
+        </article>
+        <article class="ai-card ai-card--champ">
+          <header>
+            <h3>Champ AI(現行)</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v1</span>
+          </header>
+          <p class="ai-persona">執念深く避け、不規則に動く現王者</p>
+          <p>
+            第1回Optuna最適化の勝ち筋に、人間の拒否権(フェイントと突撃は見せ場として維持)を
+            合わせたチャンピオン。撃たれた場所を執拗に迂回し、攻撃中は不規則なダッシュで狙いを外させ、
+            決めた戦術は粘り強くやり抜きます。回復もそこそこに早く戦線復帰する攻撃的な性格。
+            負けるときもほぼ接戦という、しぶとさが持ち味です。
+          </p>
+        </article>
+        <article class="ai-card">
+          <header>
+            <h3>Other AI</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v2</span>
+          </header>
+          <p class="ai-persona">理詰めで柔軟な挑戦者(王座には届かず)</p>
+          <p>
+            測定環境を修正した後の第2回最適化で生まれた個体。戦術を素早く切り替え、深い先回り予測と
+            側面への回り込み、積極的な突撃で理詰めに攻めます。しかしA/B対戦(各147試合)では
+            Champ AIに勝率で及ばず — 「新しい最適化が常に強いとは限らない」ことを示す、
+            生きた比較展示です。この枠は今後、別の挑戦者と入れ替わる可能性があります。
+          </p>
+        </article>
       </div>
     </section>
 
