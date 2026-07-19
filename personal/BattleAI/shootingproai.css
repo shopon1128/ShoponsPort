@@ -130,6 +130,16 @@ main {
 }
 
 /* ---------- AIプロフィールカード ---------- */
+.ai-group-label {
+  font-family:    'Syne', sans-serif;
+  font-size:      0.72rem;
+  font-weight:    700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color:          var(--accent);
+  margin:         22px 0 0;
+}
+
 .ai-grid {
   display:               grid;
   grid-template-columns: 1fr 1fr;

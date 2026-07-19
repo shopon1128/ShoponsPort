@@ -36,7 +36,7 @@
         ただし主役はプレイヤーではなく<strong>敵AI</strong>。
         「機械だからこその理不尽な反応速度で勝つ」のではなく、
         <strong>立ち回りの賢さだけで人間を追い詰める</strong>ボスを目指した作品です。
-        タイトル画面で4種類の敵AI(下の「AI Lineup」参照)を切り替えられるので、
+        タイトル画面で7体の敵AI(下の「AI Lineup」参照)を切り替えられるので、
         手作りのAIから最適化されたチャンピオンまで、AIの進化を体感しながら遊べます。
       </p>
     </section>
@@ -79,59 +79,102 @@
     <section>
       <h2 class="section-label">AI Lineup</h2>
       <p>
-        タイトル画面で選べる4種類の敵AIの紹介です。今後公開する対戦データ(CSV)の
-        <code>ai_type</code>列は、各カードのラベルに対応します。
+        タイトル画面で選べる7体の敵AI。<strong>Featured</strong>の3体は常時表示、
+        <strong>Others</strong>の4体はサブメニューから選べます。称号(最強・最高など)は物語の中での役割、
+        v1/v3といった番号は生まれた順の記録です。対戦データ(CSV)の<code>ai_type</code>列は各カードのラベルに対応します。
       </p>
+
+      <p class="ai-group-label">Featured</p>
       <div class="ai-grid">
-        <article class="ai-card">
+        <article class="ai-card ai-card--champ">
           <header>
-            <h3>Normal AI</h3>
-            <span class="ai-tag">ai_type: normal</span>
+            <h3>Champ AI</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v1</span>
           </header>
-          <p class="ai-persona">まっすぐ来る脳筋ファイター</p>
+          <p class="ai-persona">最強 — 執念深く避け、不規則に動く現王者</p>
           <p>
-            索敵→追跡→攻撃→離脱の4状態だけで動くステートマシン型。隠密も駆け引きも知らず、
-            見つけたら追いかけて自由角度で撃ちまくります。単純ゆえに手数が多く、
-            行儀よく戦う相手には意外と強い一方、遮蔽を使う人間には動きを読まれがちです。
+            第1回Optuna最適化によって導かれたパラメータに対し、そこからフェイントと突撃は見せ場として維持をするために値を手調整した、
+            <strong>現最強のハイブリッドAI</strong>。撃たれた場所を執拗に迂回し、攻撃中は不規則なダッシュで狙いを外させ、
+            決めた戦術は粘り強くやり抜きます。回復もそこそこに、すぐに戦線復帰する攻撃的な性格。
+            負けるときもほぼ接戦という、しぶとさが持ち味です。A/B対戦で後続の全挑戦者を退けました。
           </p>
         </article>
         <article class="ai-card">
           <header>
-            <h3>Pro AI</h3>
+            <h3>Ace AI</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v3</span>
+          </header>
+          <p class="ai-persona">最高 — 間合いの外から仕留める遠距離型スナイパー</p>
+          <p>
+            第3回最適化(見せ場を最初から制約に組み込んだ共適応設計)で生まれた個体。
+            現チャンピオンとは正反対に、遠い間合いを保って撃ち、詰められればほぼ全力の回避で逸れ、
+            戦術を目まぐるしく考え直します。遠距離型だからこそ不意のダッシュ強襲が刺さる二段構え。
+            勝率は現チャンピオンを超えられませんでしたが、バランスがよく、
+            <strong>ゲームAIとしては今までで最も出来が良い</strong>と感じ「最高」の称号に。
+          </p>
+        </article>
+        <article class="ai-card">
+          <header>
+            <h3>Craft AI</h3>
             <span class="ai-tag">ai_type: pro</span>
           </header>
-          <p class="ai-persona">設計者の意図どおりに戦う基準機</p>
+          <p class="ai-persona">学習前 — 設計者の意図どおりに戦う基準機</p>
           <p>
             7つの戦術を使い分けるユーティリティAIに、人間が手で調整した値を載せた「設計図どおり」の個体。
             フェイントも危険記憶も教科書的な頻度で使います。慎重派で、EPが8割回復するまで
             じっくり隠れるため試合が長引きがち。最適化の効果を測るときの比較基準です。
           </p>
         </article>
-        <article class="ai-card ai-card--champ">
+      </div>
+
+      <p class="ai-group-label">Others</p>
+      <div class="ai-grid">
+        <article class="ai-card">
           <header>
-            <h3>Champ AI</h3>
-            <span class="ai-tag">ai_type: pro_optimized_v1</span>
+            <h3>Base AI</h3>
+            <span class="ai-tag">ai_type: base</span>
           </header>
-          <p class="ai-persona">執念深く避け、不規則に動く現王者</p>
+          <p class="ai-persona">原始 — まっすぐ来る脳筋ファイター</p>
           <p>
-            第1回Optuna最適化によって導かれたパラメータに対し、そこからフェイントと突撃は見せ場として維持をするために値を手調整した、
-            <strong>現最強のハイブリッドAI</strong>。撃たれた場所を執拗に迂回し、攻撃中は不規則なダッシュで狙いを外させ、
-            決めた戦術は粘り強くやり抜きます。回復もそこそこに、すぐに戦線復帰する攻撃的な性格。
-            負けるときもほぼ接戦という、しぶとさが持ち味です。
+            索敵→追跡→攻撃→離脱の4状態だけで動くステートマシン型で、全AIのご先祖。隠密も駆け引きも知らず、
+            見つけたら追いかけて自由角度で撃ちまくります。単純ゆえに手数が多く、
+            行儀よく戦うボットには意外と強い一方、遮蔽を使う人間には動きを読まれがちです。
           </p>
         </article>
         <article class="ai-card">
           <header>
-            <h3>Other AI</h3>
-            <span class="ai-tag">ai_type: pro_optimized_v3</span>
+            <h3>Cold AI</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v1_origin</span>
           </header>
-          <p class="ai-persona">間合いの外から仕留める遠距離型スナイパー</p>
+          <p class="ai-persona">非情 — 勝つために見せ場を封印した素の最適化</p>
           <p>
-            第3回最適化(見せ場を最初から制約に組み込んだ共適応設計)で生まれた個体。
-            現チャンピオンとは正反対に、遠い間合いを保って撃ち、詰められればほぼ全力の回避で逸れ、
-            戦術を目まぐるしく考え直します。遠距離型だからこそ不意のダッシュ強襲が刺さる二段構え。
-            勝率は現チャンピオンを超えることができませんでしたが、バランスの良い強さを持ち、
-            <strong>ゲームAIとしては</strong>今までで出来が最も良いのではと思い、Other枠にしました。
+            Champ AIが「人の拒否権」を受ける前の姿。勝率だけを追った最適化はフェイントをほぼ撃たず、
+            偏差射撃も控える冷徹な立ち回りを選びました。Champ AIとはフェイント・偏差・突撃の
+            <strong>3項目だけ</strong>が違い、その差が「魅せない強さ」として表れます。
+            数値目標が製品価値の代理でしかないことを示す標本です。
+          </p>
+        </article>
+        <article class="ai-card">
+          <header>
+            <h3>Chaos AI</h3>
+            <span class="ai-tag">ai_type: rand</span>
+          </header>
+          <p class="ai-persona">おふざけ — 毎試合パラメータが変わる無法者</p>
+          <p>
+            立ち回りの14パラメータを試合ごとにランダム化する余興枠。射程も回避も突撃頻度も毎回バラバラで、
+            強い個体もちぐはぐな個体も出ます。「最適化しないとこうなる」を逆説的に見せる存在。
+            公平性の枠(反応速度など)は固定なので、理不尽な動きにはなりません。
+          </p>
+        </article>
+        <article class="ai-card">
+          <header>
+            <h3>v2</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v2</span>
+          </header>
+          <p class="ai-persona">敗者 — 王座に届かなかった挑戦者</p>
+          <p>
+            第2回最適化で生まれた個体。測定環境を直した後の再挑戦でしたが、A/B対戦(各147試合)で
+            Champ AIに勝率で及ばず退役しました。「新しい最適化が常に強いとは限らない」ことを記録として残す1体です。
           </p>
         </article>
       </div>
@@ -203,9 +246,9 @@
           </thead>
           <tbody>
             <tr><td>Champ AI(v1)</td><td>74%(180試合)</td><td>75%(8試合)</td></tr>
-            <tr><td>Other AI(v3)</td><td>69%(209試合)</td><td>71%(7試合)</td></tr>
-            <tr><td>Pro AI</td><td>71%(115試合)</td><td>25%(4試合)</td></tr>
-            <tr><td>Normal AI</td><td>80%(120試合)</td><td>0%(5試合)</td></tr>
+            <tr><td>Ace AI(v3)</td><td>69%(209試合)</td><td>71%(7試合)</td></tr>
+            <tr><td>Craft AI</td><td>71%(115試合)</td><td>25%(4試合)</td></tr>
+            <tr><td>Base AI</td><td>80%(120試合)</td><td>0%(5試合)</td></tr>
           </tbody>
         </table>
       </div>
