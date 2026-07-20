@@ -130,14 +130,33 @@ main {
 }
 
 /* ---------- AIプロフィールカード ---------- */
+/* グループ見出し:塗りバッジ + 区切り線で「章の切れ目」として立たせる */
 .ai-group-label {
+  display:        flex;
+  align-items:    center;
+  gap:            12px;
   font-family:    'Syne', sans-serif;
-  font-size:      0.72rem;
+  font-size:      0.78rem;
   font-weight:    700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color:          var(--accent);
-  margin:         22px 0 0;
+  color:          inherit;
+  margin:         36px 0 0;
+}
+
+.ai-group-label span {
+  background:   var(--accent);
+  color:        #fff;
+  padding:      4px 12px;
+  box-shadow:   3px 3px 0 var(--border);
+}
+
+/* バッジの右に伸ばす区切り線 */
+.ai-group-label::after {
+  content:     "";
+  flex:        1;
+  height:      2px;
+  background:  var(--border);
 }
 
 .ai-grid {
