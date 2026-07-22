@@ -272,28 +272,32 @@
     <section class="download">
       <h2 class="section-label">Battle Data</h2>
       <p class="data-desc">
-        現行ビルドで収録した対戦データ(1試合1行・648試合)を公開しています。
+        現行ビルドで収録した対戦データ(1試合1行・1,424試合)を公開しています。
         <code>ai_type</code>列は上のAI Lineupのラベルに対応し、<code>is_bot</code>列で
         AI同士の自動対戦(1)と人間との対戦(0)を区別できます。勝敗・両者の命中率・
         戦術ごとの滞在時間・フェイントの効果測定などが1行に入っており、pandasでそのまま読めます。
       </p>
       <div class="result-table-wrap">
         <table class="result-table">
-          <caption>収録データでの敵AI勝率(抜粋)</caption>
+          <caption>収録データでの敵AI勝率(全7種)</caption>
           <thead>
             <tr><th>敵AI</th><th>vs ボット</th><th>vs 人間(制作者)</th></tr>
           </thead>
           <tbody>
-            <tr><td>Champ AI(v1)</td><td>74%(180試合)</td><td>75%(8試合)</td></tr>
-            <tr><td>Ace AI(v3)</td><td>69%(209試合)</td><td>71%(7試合)</td></tr>
-            <tr><td>Craft AI</td><td>71%(115試合)</td><td>25%(4試合)</td></tr>
-            <tr><td>Base AI</td><td>80%(120試合)</td><td>0%(5試合)</td></tr>
+            <tr><td>Champ AI(v1)</td><td>72%(425試合)</td><td>75%(8試合)</td></tr>
+            <tr><td>Ace AI(v3)</td><td>69%(309試合)</td><td>62%(16試合)</td></tr>
+            <tr><td>Craft AI</td><td>66%(175試合)</td><td>25%(4試合)</td></tr>
+            <tr><td>Base AI</td><td>81%(180試合)</td><td>0%(5試合)</td></tr>
+            <tr><td>Frost AI(v4)</td><td>75%(100試合)</td><td>—</td></tr>
+            <tr><td>Cold AI</td><td>69%(59試合)</td><td>—</td></tr>
+            <tr><td>v2(退役)</td><td>61%(143試合)</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
       <p class="play-note">
         対ボット最強格だったBase AIが人間には全敗 — 「ボットに勝てる」と「人間に強い」は別物、という
-        この制作を貫くテーマがデータにも表れています。人間との対戦は少数なので参考値です。
+        この制作を貫くテーマがデータにも表れています。対ボットでは学習で作ったFrost AIが現王者Champをわずかに上回り、
+        逆に最も勝率の低かったv2は退役しました。人間との対戦は少数なので参考値です。
       </p>
       <a class="play-button" href="battle_data.csv" download>Download battle_data.csv</a>
     </section>
