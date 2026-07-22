@@ -93,7 +93,8 @@
           </header>
           <p class="ai-persona">最強 — 執念深く避け、不規則に動く現王者</p>
           <p>
-            第1回Optuna最適化によって導かれたパラメータに対し、そこからフェイントと突撃は見せ場として維持をするために値を手調整した、
+            第1回Optuna最適化によって導かれたパラメータに対し、フェイント・偏差射撃・突撃の3項目だけを人間が手調整した
+            (見せ場の維持と、対人間での有効性のため)、
             <strong>現最強のハイブリッドAI</strong>。撃たれた場所を執拗に迂回し、攻撃中は不規則なダッシュで狙いを外させ、
             決めた戦術は粘り強くやり抜きます。回復もそこそこに、すぐに戦線復帰する攻撃的な性格。
             負けるときもほぼ接戦という、しぶとさが持ち味です。A/B対戦で後続の全挑戦者を退けました。
@@ -234,6 +235,40 @@
       </p>
     </section>
 
+    <section>
+      <h2 class="section-label">Machine Learning</h2>
+      <p>
+        Optuna最適化(上)が調整したのは「立ち回りの数値」でした。次の一歩は、それまで手書きだった
+        <strong>戦術の"選び方"そのもの</strong>を機械学習で置き換えること。運動制御と発動条件(＝公平性のルール)は
+        手書きのまま残し、<strong>7つの戦術のどれを選ぶかだけ</strong>を学習対象にしています(だから公平性は構造的に守られる)。
+      </p>
+      <ol class="steps">
+        <li>判断チックごとに「観測18次元 → そのとき選んだ戦術」を記録し、教師データを作る</li>
+        <li>現チャンピオンChamp AIの判断を<strong>線形モデルで模倣学習</strong>(behavioral cloning) — 判断の一致率<strong>97%</strong>で手書きの脳をまるごと再現</li>
+        <li>その重みを起点に<strong>CMA-ES(進化戦略)</strong>で磨く。良し悪しの指標は自動対戦の勝率(Optunaと同じUnity↔Pythonのファイル連携を流用)</li>
+        <li>上位候補を多試合で追試して選抜し直し、200試合でChampをわずかに上回った個体が<strong>Frost AI</strong>(下のLineup参照)</li>
+      </ol>
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-value">97%</span>
+          <span class="stat-label">模倣学習がChampの判断を再現した一致率(最頻ベースライン28%)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">133</span>
+          <span class="stat-label">CMA-ESで探索した方策の重みベクトルの次元数</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">+5pt</span>
+          <span class="stat-label">進化がChampから伸ばした勝率 — その正体はフェイントの封印</span>
+        </div>
+      </div>
+      <p class="play-note">
+        面白いのは<strong>超え方</strong>でした。進化が見つけた勝ち筋は「フェイント(見せ場)を捨てて直接的に戦う」こと。
+        パラメータ最適化でそれをやったのがCold AI、<strong>まったく別の技術(機械学習+進化)で独立に同じ結論</strong>に達したのがFrost AIです。
+        技術を変えても、勝率だけを追えば見せ場は削られる — それを守るのは人間の仕事、という本作の主題をもう一度裏づけました。
+      </p>
+    </section>
+
     <section class="download">
       <h2 class="section-label">Battle Data</h2>
       <p class="data-desc">
@@ -257,7 +292,7 @@
         </table>
       </div>
       <p class="play-note">
-        対ボット最強格だったNormal AIが人間には全敗 — 「ボットに勝てる」と「人間に強い」は別物、という
+        対ボット最強格だったBase AIが人間には全敗 — 「ボットに勝てる」と「人間に強い」は別物、という
         この制作を貫くテーマがデータにも表れています。人間との対戦は少数なので参考値です。
       </p>
       <a class="play-button" href="battle_data.csv" download>Download battle_data.csv</a>
@@ -272,6 +307,9 @@
         <span class="tag">A*経路探索</span>
         <span class="tag">Python</span>
         <span class="tag">Optuna</span>
+        <span class="tag">模倣学習</span>
+        <span class="tag">CMA-ES</span>
+        <span class="tag">scikit-learn</span>
         <span class="tag">WebGL</span>
       </div>
     </section>
