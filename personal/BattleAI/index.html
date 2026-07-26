@@ -26,7 +26,7 @@
         <div><span class="key">↑←↓→</span>  上下左右へショット</div>
         <div><span class="key">ESC</span>  AIの戦術・危険地帯を可視化</div>
       </div>
-      <p><strong>※タイトル画面のオプションからキー割り当ての変更や、スマホ用のUI表示ができます。</strong></p>
+      <p>※タイトル画面のオプションからキー割り当ての変更や、スマホ用のUI表示ができます。</p>
     </section>
 
     <section>
@@ -36,8 +36,8 @@
         ただし主役はプレイヤーではなく<strong>敵AI</strong>。
         「機械だからこその理不尽な反応速度で勝つ」のではなく、
         <strong>立ち回りの賢さだけで人間を追い詰める</strong>ボスを目指した作品です。
-        タイトル画面で7体の敵AI(下の「AI Lineup」参照)を切り替えられるので、
-        手作りのAIから最適化されたチャンピオンまで、AIの進化を体感しながら遊べます。
+        タイトル画面で9体の敵AIを切り替えられるので、
+        手作りの者から最適化された者まで、AIの進化を体感しながら遊べます。
       </p>
     </section>
 
@@ -79,39 +79,47 @@
     <section>
       <h2 class="section-label">AI Lineup</h2>
       <p>
-        タイトル画面で選べる7体の敵AI。<strong>Featured</strong>の3体は常時表示、
-        <strong>Others</strong>の4体はサブメニューから選べます。称号(最強・最高など)は物語の中での役割、
-        v1/v3といった番号は生まれた順の記録です。対戦データ(CSV)の<code>ai_type</code>列は各カードのラベルに対応します。
+        タイトル画面で選べる9体の敵AI。<strong>Featured</strong>の3体は常時表示、
+        <strong>Others</strong>の6体はサブメニューから選べます。称号(双冠・歴戦など)は<strong>いま</strong>その特徴を持つ個体に付くもので、
+        v1/v3といった番号は生まれた順の記録です(称号は移っても番号は変わりません)。
+        対戦データ(CSV)の<code>ai_type</code>列は各カードのラベルに対応します。
       </p>
 
       <p class="ai-group-label"><span>Featured</span></p>
       <div class="ai-grid">
         <article class="ai-card ai-card--champ">
           <header>
-            <h3>Champ AI</h3>
-            <span class="ai-tag">ai_type: pro_optimized_v1</span>
+            <h3>Crown AI</h3>
+            <span class="ai-tag">ai_type: pro_learned_v5</span>
           </header>
-          <p class="ai-persona">最強 — 執念深く避け、不規則に動く現王者</p>
+          <p class="ai-persona">双冠 — 見せ場を捨てずに頂点へ立った、学習の到達点</p>
           <p>
-            第1回Optuna最適化によって導かれたパラメータに対し、フェイント・偏差射撃・突撃の3項目だけを人間が手調整した
-            (見せ場の維持と、対人間での有効性のため)、
-            <strong>現最強のハイブリッドAI</strong>。撃たれた場所を執拗に迂回し、攻撃中は不規則なダッシュで狙いを外させ、
-            決めた戦術は粘り強くやり抜きます。回復もそこそこに、すぐに戦線復帰する攻撃的な性格。
-            負けるときもほぼ接戦という、しぶとさが持ち味です。A/B対戦で後続の全挑戦者を退けました。
+            戦術の「選び方」を機械学習で作った個体。教師は先代Ace(現Snipe AI)で、その判断を
+            <strong>99%の一致率</strong>で模倣したうえ、CMA-ES(進化戦略)で磨きました。
+            遠距離で撃てない位置に踏み込まれれば躊躇なく詰め、遮蔽の陰から角待ちのような不意打ちを仕掛ける。
+            <strong>「最強(勝率)」と「最高(遊んで一番おもしろい)」を同時に獲得した初のAI</strong>で、
+            既存の称号を襲名するのでは足りず、二冠そのものを称号にしました。
+            特筆すべきは<strong>強さの中身</strong>です。5種類の相手ボットすべてに77%以上で勝ち、
+            得意不得意の差がわずか11ポイント — <strong>相手を選ばない強さ</strong>。
+            そして<strong>フェイント(見せ場)を捨てずに</strong>勝ちました。
+            最適化は見せ場を削るもの、という本作の結論に対する反証が、そのまま頂点に立ったことになります。
           </p>
         </article>
         <article class="ai-card">
           <header>
-            <h3>Ace AI</h3>
-            <span class="ai-tag">ai_type: pro_optimized_v3</span>
+            <h3>Veteran AI</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v1</span>
           </header>
-          <p class="ai-persona">最高 — 間合いの外から仕留める遠距離型スナイパー</p>
+          <p class="ai-persona">歴戦 — 4世代の挑戦者を退け続けた古豪</p>
           <p>
-            第3回最適化(見せ場を最初から制約に組み込んだ共適応設計)で生まれた個体。
-            現チャンピオンとは正反対に、遠い間合いを保って撃ち、詰められればほぼ全力の回避で逸れ、
-            戦術を目まぐるしく考え直します。遠距離型だからこそ不意のダッシュ強襲が刺さる二段構え。
-            勝率は現チャンピオンを超えられませんでしたが、バランスがよく、
-            <strong>ゲームAIとしては今までで最も出来が良い</strong>と感じ「最高」の称号に。
+            第1回Optuna最適化によって導かれたパラメータに対し、フェイント・偏差射撃・突撃の3項目だけを人間が手調整した
+            ハイブリッドAI。撃たれた場所を執拗に迂回し、攻撃中は不規則なダッシュで狙いを外させ、
+            決めた戦術は粘り強くやり抜きます。負けるときもほぼ接戦という、しぶとさが持ち味。
+            <strong>第2〜4世代の挑戦者をすべてA/B対戦で退け、長く「最強」を守り続けました</strong>。
+            第5世代(Crown AI)にわずかな差で王座を譲りましたが、いまも全体の2位。
+            退役ではなく、<strong>王座を譲った歴戦の古豪</strong>としてここに立っています。
+            弱点も見つかっています — 細かく不規則に動く相手には56%まで勝率が落ちる。
+            その高い命中率は、<strong>動きの読める相手にしか発揮できない</strong>のです。
           </p>
         </article>
         <article class="ai-card">
@@ -135,7 +143,7 @@
             <h3>Base AI</h3>
             <span class="ai-tag">ai_type: base</span>
           </header>
-          <p class="ai-persona">原始 — まっすぐ来る脳筋ファイター</p>
+          <p class="ai-persona">まっすぐ来る脳筋ファイター</p>
           <p>
             索敵→追跡→攻撃→離脱の4状態だけで動くステートマシン型で、全AIのご先祖。隠密も駆け引きも知らず、
             見つけたら追いかけて自由角度で撃ちまくります。単純ゆえに手数が多く、
@@ -147,25 +155,26 @@
             <h3>Cold AI</h3>
             <span class="ai-tag">ai_type: pro_optimized_v1_origin</span>
           </header>
-          <p class="ai-persona">非情 — 勝つために見せ場を封印した素の最適化</p>
+          <p class="ai-persona">勝つために見せ場を封印した素の最適化</p>
           <p>
-            Champ AIが「人の拒否権」を受ける前の姿。勝率だけを追った最適化はフェイントをほぼ撃たず、
-            偏差射撃も控える冷徹な立ち回りを選びました。Champ AIとはフェイント・偏差・突撃の
+            Veteran AIが「人の拒否権」を受ける前の姿。勝率だけを追った最適化はフェイントをほぼ撃たず、
+            偏差射撃も控える冷徹な立ち回りを選びました。Veteran AIとはフェイント・偏差・突撃の
             <strong>3項目だけ</strong>が違い、その差が「魅せない強さ」として表れます。
-            数値目標が製品価値の代理でしかないことを示す標本です。のちにFrost AIが、
-            まったく別の技術(機械学習)で同じ「フェイント封印」に行き着きました。
+            数値目標が製品価値の代理でしかないことを示す標本です。
           </p>
         </article>
         <article class="ai-card">
           <header>
-            <h3>Chaos AI</h3>
-            <span class="ai-tag">ai_type: rand</span>
+            <h3>Snipe AI</h3>
+            <span class="ai-tag">ai_type: pro_optimized_v3</span>
           </header>
-          <p class="ai-persona">おふざけ — 毎試合パラメータが変わる無法者</p>
+          <p class="ai-persona">間合いの外から仕留める遠距離型スナイパー</p>
           <p>
-            立ち回りの14パラメータを試合ごとにランダム化する余興枠。射程も回避も突撃頻度も毎回バラバラで、
-            強い個体もちぐはぐな個体も出ます。「最適化しないとこうなる」を逆説的に見せる存在。
-            公平性の枠(反応速度など)は固定なので、理不尽な動きにはなりません。
+            第3回最適化(見せ場を最初から制約に組み込んだ共適応設計)で生まれた個体で、
+            <strong>初代Ace</strong>であり、現在の王者Crown AIを育てた<strong>教師</strong>でもあります。
+            チャンピオンとは正反対に、遠い間合いを徹底して保ち、引き撃ちで削り、詰められればほぼ全力の回避で逸れる。
+            弟子に称号を譲ったあとは、その代名詞だった<strong>狙撃</strong>を称号にしました。
+            同じ体から生まれた二人を戦い比べると、間合いの取り方だけでAIの性格がここまで変わるのかが分かります。
           </p>
         </article>
         <article class="ai-card">
@@ -173,13 +182,40 @@
             <h3>Frost AI</h3>
             <span class="ai-tag">ai_type: pro_learned_v4</span>
           </header>
-          <p class="ai-persona">氷結 — 学習と進化がたどり着いた、もう一つの冷徹</p>
+          <p class="ai-persona">学習と進化がたどり着いた、もう一つの冷徹</p>
           <p>
-            戦術の「選び方」そのものを機械学習で作った個体。まずChampの判断を模倣学習で
-            <strong>97%再現</strong>し、さらにCMA-ES(進化戦略)で磨いて、200試合でChampをわずかに上回りました。
+            戦術の「選び方」そのものを機械学習で作った個体。まず当時の王者(現Veteran AI)の判断を模倣学習で
+            <strong>97%再現</strong>し、さらにCMA-ES(進化戦略)で磨いて、200試合で王者をわずかに上回りました。
             ただしその強さの正体は<strong>フェイント(見せ場)の封印</strong>。パラメータ最適化でそれをやったのがCold AI、
             <strong>学習+進化で独立に同じ結論に達した</strong>のがこのFrost AIです。技術が違っても、勝率だけを追えば
-            見せ場は削られる — それを守るのは人間の仕事、という本作の主題を裏づける対の一体です。
+            見せ場は削られる — そう結論しかけたところに現れたのが、同じ手法で見せ場を保ったまま強くなったCrown AI。
+            この2体を戦い比べると、<strong>何が見せ場を殺したのか</strong>が見えてきます。
+          </p>
+        </article>
+        <article class="ai-card">
+          <header>
+            <h3>Chaos AI</h3>
+            <span class="ai-tag">ai_type: chaos</span>
+          </header>
+          <p class="ai-persona">毎試合パラメータが変わる無法者</p>
+          <p>
+            立ち回りの14パラメータを試合ごとにランダム化する余興枠。射程も回避も突撃頻度も毎回バラバラで、
+            強い個体もちぐはぐな個体も出ます。データ上も勝率65%と、最適化・学習した個体(80%前後)に
+            はっきり届きません。「<strong>最適化しないとこうなる</strong>」を逆説的に見せる存在です。
+            公平性の枠(反応速度など)は固定なので、理不尽な動きにはなりません。
+          </p>
+        </article>
+        <article class="ai-card">
+          <header>
+            <h3>Shuffle AI</h3>
+            <span class="ai-tag">ai_type: 抽選結果が記録される</span>
+          </header>
+          <p class="ai-persona">毎試合、誰が出てくるか分からない</p>
+          <p>
+            試合ごとに他のAIから1体を抽選して出撃させる枠。次に何と戦うか分からないまま挑む遊び方ができます。
+            同時に<strong>データ収集の道具</strong>でもあり、全AIを同一条件・同一セッションで
+            均等に戦わせられるので、下のCSVはこの仕組みで集めました。
+            記録には抽選結果(実際に出たAI)が残ります。
           </p>
         </article>
       </div>
@@ -244,14 +280,14 @@
       </p>
       <ol class="steps">
         <li>判断チックごとに「観測18次元 → そのとき選んだ戦術」を記録し、教師データを作る</li>
-        <li>現チャンピオンChamp AIの判断を<strong>線形モデルで模倣学習</strong>(behavioral cloning) — 判断の一致率<strong>97%</strong>で手書きの脳をまるごと再現</li>
+        <li>当時のチャンピオン(現Veteran AI)の判断を<strong>線形モデルで模倣学習</strong>(behavioral cloning) — 判断の一致率<strong>97%</strong>で手書きの脳をまるごと再現</li>
         <li>その重みを起点に<strong>CMA-ES(進化戦略)</strong>で磨く。良し悪しの指標は自動対戦の勝率(Optunaと同じUnity↔Pythonのファイル連携を流用)</li>
-        <li>上位候補を多試合で追試して選抜し直し、200試合でChampをわずかに上回った個体が<strong>Frost AI</strong>(下のLineup参照)</li>
+        <li>上位候補を多試合で追試して選抜し直し、200試合で王者をわずかに上回った個体が<strong>Frost AI</strong>(下のLineup参照)</li>
       </ol>
       <div class="stat-row">
         <div class="stat">
           <span class="stat-value">97%</span>
-          <span class="stat-label">模倣学習がChampの判断を再現した一致率(最頻ベースライン28%)</span>
+          <span class="stat-label">模倣学習が王者の判断を再現した一致率(最頻ベースライン28%)</span>
         </div>
         <div class="stat">
           <span class="stat-value">133</span>
@@ -259,7 +295,7 @@
         </div>
         <div class="stat">
           <span class="stat-value">+5pt</span>
-          <span class="stat-label">進化がChampから伸ばした勝率 — その正体はフェイントの封印</span>
+          <span class="stat-label">進化が王者から伸ばした勝率 — その正体はフェイントの封印</span>
         </div>
       </div>
       <p class="play-note">
@@ -269,35 +305,85 @@
       </p>
     </section>
 
+    <section>
+      <h2 class="section-label">見せ場は、なぜ死んだのか</h2>
+      <p>
+        ここまでで「最適化は見せ場を殺す」という結論が2回出ました。しかし本当にそうなのか、という疑問が残ります。
+        Frost AIが捨てたフェイントは、実は<strong>最適化のあとから人間が手で足した後付けの値</strong>でした。
+        周りのパラメータは「フェイントをあまり使わない前提」のまま噛み合っていない。
+        だから進化は、その浮いた部分を真っ先に削ったのではないか — そう考えて、<strong>教師を替えて</strong>もう一度学習させました。
+      </p>
+      <p>
+        新しい教師は先代Ace(現Snipe AI)。こちらは<strong>最初からフェイントを制約として組み込んで最適化した</strong>ので、
+        見せ場が周りの値と噛み合っています。同じ手順(模倣 → CMA-ES進化 → 多段の追試)を踏んだ結果:
+      </p>
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-value">13.0%</span>
+          <span class="stat-label">Crown AIがフェイントに費やす時間 — 教師とほぼ同じ(Frost AIは1.8%)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">99.3%</span>
+          <span class="stat-label">模倣学習の一致率。希少なフェイントも取りこぼさず再現した</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">600</span>
+          <span class="stat-label">王座を賭けたA/B対戦の試合数(交互に対戦。結果は互角)</span>
+        </div>
+      </div>
+      <p class="play-note">
+        <strong>見せ場は生き延びました。</strong>「最適化は見せ場を殺す」は条件付きだったのです —
+        殺されるのは<strong>後付けで浮いた見せ場</strong>で、最初から設計に織り込まれた見せ場は、進化を通り抜けて残る。
+        パラメータ最適化で得た「制約は事後に上書きせず、最初から探索空間に入れる」という教訓が、
+        <strong>技術を跨いで機械学習でも成り立った</strong>瞬間でした。
+      </p>
+      <p class="play-note">
+        この個体はその後、人間の試遊対決で「最高(遊んで一番おもしろい)」を、
+        900試合のA/B対戦で「最強(勝率)」を獲得しました。
+        <strong>学習で作られたAIが初めて頂点に立ち、しかも見せ場を捨てずに勝った</strong>ことになります。
+        既存の称号を襲名するのでは足りないため、二冠そのものを称号にしたのが現在の<strong>Crown AI</strong>です。
+      </p>
+    </section>
+
     <section class="download">
       <h2 class="section-label">Battle Data</h2>
       <p class="data-desc">
-        現行ビルドで収録した対戦データ(1試合1行・1,424試合)を公開しています。
-        <code>ai_type</code>列は上のAI Lineupのラベルに対応し、<code>is_bot</code>列で
-        AI同士の自動対戦(1)と人間との対戦(0)を区別できます。勝敗・両者の命中率・
-        戦術ごとの滞在時間・フェイントの効果測定などが1行に入っており、pandasでそのまま読めます。
+        現行ビルドで収録した対戦データ(1試合1行・<strong>4,760試合</strong>)を公開しています。
+        <code>ai_type</code>列は上のAI Lineupのラベルに、<code>opponent</code>列は
+        対戦相手(<code>player</code>=人間 / <code>bot_○○</code>=各性格のボット)に対応します。
+        勝敗・両者の命中率・戦術ごとの滞在時間・フェイントの効果測定などが1行に入っており、pandasでそのまま読めます。
+      </p>
+      <p class="data-desc">
+        評価用のボットは<strong>5種類の性格</strong>を用意しました。単一の相手に対する勝率は、
+        その相手の癖への適応度でもあるからです。実際、1種類だけで測っていた頃は上位7体が
+        78〜82%に張り付いて<strong>統計的に区別できなくなっていました</strong>が、
+        性格を増やしたとたん同じAI群が<strong>50%〜97%に展開</strong>しました。
       </p>
       <div class="result-table-wrap">
         <table class="result-table">
-          <caption>収録データでの敵AI勝率(全7種)</caption>
+          <caption>敵AI × 相手の性格 別の勝率(全9種・4,760試合)</caption>
           <thead>
-            <tr><th>敵AI</th><th>vs ボット</th><th>vs 人間(制作者)</th></tr>
+            <tr><th>敵AI</th><th>突撃</th><th>回避</th><th>標準</th><th>初心者</th><th>置き撃ち</th><th>合計</th><th>最大差</th></tr>
           </thead>
           <tbody>
-            <tr><td>Champ AI(v1)</td><td>72%(425試合)</td><td>75%(8試合)</td></tr>
-            <tr><td>Ace AI(v3)</td><td>69%(309試合)</td><td>62%(16試合)</td></tr>
-            <tr><td>Craft AI</td><td>66%(175試合)</td><td>25%(4試合)</td></tr>
-            <tr><td>Base AI</td><td>81%(180試合)</td><td>0%(5試合)</td></tr>
-            <tr><td>Frost AI(v4)</td><td>75%(100試合)</td><td>—</td></tr>
-            <tr><td>Cold AI</td><td>69%(59試合)</td><td>—</td></tr>
-            <tr><td>v2(退役)</td><td>61%(143試合)</td><td>—</td></tr>
+            <tr><td><strong>Crown AI(v5)</strong></td><td>78%</td><td>77%</td><td>81%</td><td>81%</td><td>89%</td><td><strong>81%</strong></td><td><strong>11pt</strong></td></tr>
+            <tr><td>Frost AI(v4)</td><td>77%</td><td>74%</td><td>80%</td><td>89%</td><td>93%</td><td>81%</td><td>19pt</td></tr>
+            <tr><td>Snipe AI(v3)</td><td>75%</td><td>72%</td><td>73%</td><td>86%</td><td>95%</td><td>78%</td><td>23pt</td></tr>
+            <tr><td>Base AI</td><td>55%</td><td>74%</td><td>79%</td><td>94%</td><td>97%</td><td>77%</td><td>42pt</td></tr>
+            <tr><td>Veteran AI(v1)</td><td>66%</td><td>56%</td><td>74%</td><td>83%</td><td>83%</td><td>73%</td><td>27pt</td></tr>
+            <tr><td>Cold AI</td><td>59%</td><td>65%</td><td>72%</td><td>83%</td><td>96%</td><td>73%</td><td>36pt</td></tr>
+            <tr><td>Chaos AI</td><td>52%</td><td>50%</td><td>65%</td><td>79%</td><td>90%</td><td>65%</td><td>40pt</td></tr>
+            <tr><td>Craft AI</td><td>51%</td><td>56%</td><td>64%</td><td>83%</td><td>69%</td><td>64%</td><td>32pt</td></tr>
           </tbody>
         </table>
       </div>
       <p class="play-note">
-        対ボット最強格だったBase AIが人間には全敗 — 「ボットに勝てる」と「人間に強い」は別物、という
-        この制作を貫くテーマがデータにも表れています。対ボットでは学習で作ったFrost AIが現王者Champをわずかに上回り、
-        逆に最も勝率の低かったv2は退役しました。人間との対戦は少数なので参考値です。
+        <strong>平均は性質を隠します。</strong>合計勝率では Base AI 77% &gt; Veteran AI 73% ですが、
+        突撃してくる相手に限れば Veteran 66% &gt; Base 55% と逆転する。
+        単純な脳筋AI(Base)は相手の質に42ポイントも左右されるのに対し、
+        <strong>Crown AIの振れ幅は11ポイント</strong> — どんな相手にも通用する強さが、
+        「最強」と「最高」を同時に満たせた理由だと考えています。
+        なお本データは新しい地形生成ルールで取り直したもので、対人戦のデータはまだ含まれていません。
       </p>
       <a class="play-button" href="battle_data.csv" download>Download battle_data.csv</a>
     </section>
