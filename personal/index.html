@@ -58,7 +58,7 @@
 
     <article class="work-card">
       <div class="work-thumb">
-        <img src="images/BookLib.png" alt="BattleAIの画像あとで作る">
+        <img src="images/BattleAI.png" alt="BattleAIの画像あとで作る">
       </div>
       <div class="work-title">
         <a href="BattleAI/">Battle AI — シューティングゲームAIの作成</a>
@@ -66,13 +66,14 @@
       <div class="work-desc">
         敵AIが主役の1vs1シューティングです。<br>
         7つの戦術を使い分けるユーティリティAIを、公平性ルール(機械的な反射の禁止)の中でどこまで強くできるかに挑みました。<br>
-        立ち回りのパラメータはPython+Optunaの自動対戦ループで最適化(3スタディ・約7,000試合)し、A/B対戦と人間の試遊で選抜した4種のAIと戦えます。対戦データのCSV付き、ブラウザでプレイできます。
+        立ち回りのパラメータはPython+Optunaの自動対戦ループで最適化し、戦術選択層はCMA-ESによる探索で学習させました。
       </div>
       <div class="work-tags">
         <span class="tag">Unity</span>
         <span class="tag">ゲームAI</span>
-        <span class="tag">Optuna</span>
         <span class="tag">WebGL</span>
+        <span class="tag">Optuna</span>
+        <span class="tag">CMA-ES</span>
       </div>
     </article>
   </main>
